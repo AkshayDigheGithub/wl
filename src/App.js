@@ -17,8 +17,8 @@ function App() {
             <Home />
           </Skelton>
         ) : (
-          <LoginComponent />
-        )}
+            <LoginComponent />
+          )}
       </Container>
     </div>
   );
