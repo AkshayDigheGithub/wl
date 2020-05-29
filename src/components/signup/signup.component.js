@@ -26,7 +26,6 @@ class SignupComponent extends Component {
 
     handleChange(event) {
         const target = event.target;
-        // const value = target.value.trim();
         const value = target.type === 'checkbox' ? target.checked : target.value.trim();
         const name = signupFormArr.find(element => element === target.name);
         const { fields } = this.state;
