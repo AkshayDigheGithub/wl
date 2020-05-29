@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import Skelton from "../skelton/index";
 
 class HomeComponent extends Component {
   state = {};
   render() {
     return (
       <>
-        <h1>HomeComponent</h1>
+        <Skelton>
+          <h1>HomeComponent</h1>
+        </Skelton>
       </>
     );
   }
