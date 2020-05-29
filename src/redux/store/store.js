@@ -1,21 +1,14 @@
-import { createStore, combineReducers, compose, applyMiddleware } from "redux";
+import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import { combineAllReducer } from "../reducers/";
+import { combineAllReducer, initalState } from "../reducers/";
 
-const allReducer = combineAllReducer;
-
-const initalState = {
-  user: [],
-  labour: [],
-  contractor: [],
-};
 
 const composeEnhancer =
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 const middleware = [thunk];
 
 export const Store = createStore(
-  allReducer,
+  combineAllReducer,
   initalState,
   compose(applyMiddleware(...middleware), composeEnhancer)
 );

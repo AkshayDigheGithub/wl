@@ -2,6 +2,7 @@ import React from "react";
 import Skelton from "./components/skelton/index";
 import Home from "./components/home/index";
 import LoginComponent from "./components/login/login.component";
+import Signupcomponent from "./components/signup/signup.component"
 import "./App.css";
 import { Container } from "react-bootstrap";
 
@@ -17,7 +18,10 @@ function App() {
             <Home />
           </Skelton>
         ) : (
-            <LoginComponent />
+            <>
+              <LoginComponent />
+              <Signupcomponent />
+            </>
           )}
       </Container>
     </div>
