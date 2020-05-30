@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 const Header = () => {
   return <h6>We are WL Header</h6>;
