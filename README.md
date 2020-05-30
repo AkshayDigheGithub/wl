@@ -1,4 +1,8 @@
-This project created as WeLabours
+This project created as Complete Login+Signup+Routing System with basic folder structure of React-redux.
+## React
+## React-Router-Dom
+## React-bootstrap
+## React-Redux
 
 ## Available Scripts
 

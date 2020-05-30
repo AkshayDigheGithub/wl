@@ -34,8 +34,9 @@ class LoginComponent extends Component {
 
   onSubmitHandle(event) {
     event.preventDefault();
-    console.log(this.state);
-    localStorage.setItem('user', true);
+    const { email, password } = this.state;
+    localStorage.setItem('user', JSON.stringify(this.state));
+    alert(JSON.stringify(this.state))
     this.props.history.push('/');
 
   }
@@ -53,6 +54,7 @@ class LoginComponent extends Component {
           <Form onSubmit={this.onSubmitHandle}>
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Control
+                required
                 type="email"
                 placeholder="name@example.com"
                 name="email"
