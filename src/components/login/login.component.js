@@ -6,9 +6,8 @@ import {
   Button,
   ButtonToolbar,
 } from "react-bootstrap";
-import { Control, actions, LocalForm } from 'react-redux-form';
 import "./login.css";
-import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 class LoginComponent extends Component {
@@ -20,6 +19,7 @@ class LoginComponent extends Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.onSubmitHandle = this.onSubmitHandle.bind(this);
+    this.signupClick = this.signupClick.bind(this);
   }
 
   handleInputChange(event) {
@@ -34,12 +34,20 @@ class LoginComponent extends Component {
 
   onSubmitHandle(event) {
     event.preventDefault();
-    console.log(this.state)
+    console.log(this.state);
+    localStorage.setItem('user', true);
+    this.props.history.push('/');
+
+  }
+
+  signupClick() {
+    console.log("clicked on sign up button");
   }
 
   render() {
+    const { email, password } = this.state;
     return (
-      <Row>
+      < Row >
         <Col md={{ offset: 3, span: 6 }}>
           <h2 className="login-header">Login Page</h2>
           <Form onSubmit={this.onSubmitHandle}>
@@ -48,7 +56,7 @@ class LoginComponent extends Component {
                 type="email"
                 placeholder="name@example.com"
                 name="email"
-                value={this.state.email}
+                value={email}
                 onChange={this.handleInputChange} />
             </Form.Group>
             <Form.Group>
@@ -57,18 +65,21 @@ class LoginComponent extends Component {
                 type="password"
                 placeholder="password"
                 name="password"
-                value={this.state.password}
+                value={password}
                 onChange={this.handleInputChange}
               />
             </Form.Group>
             <ButtonToolbar>
               <Button variant="primary" block className="login-button" type="submit" >Login</Button>
+              <Button variant="info" block to="/signup" as={Link} >Signup</Button>
             </ButtonToolbar>
           </Form>
         </Col>
-      </Row>
+      </Row >
     );
   }
 }
+
+
 
 export default LoginComponent;

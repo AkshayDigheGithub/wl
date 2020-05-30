@@ -1,12 +1,18 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 
 class HomeComponent extends Component {
-  state = {};
+  constructor(props) {
+    super(props)
+    console.log("props", props);
+  }
+
   render() {
     return (
-      <>
-        <h1>HomeComponent</h1>
-      </>
+      <Fragment>
+        <h1>Home Component</h1>
+        <Link to="/profile">Profile page</Link>
+      </Fragment>
     );
   }
 }

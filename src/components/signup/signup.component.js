@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button, InputGroup, Col, Row } from 'react-bootstrap';
 import './signup.css'
+import { Link } from 'react-router-dom';
 
 const signupFormArr = ['firstName', 'lastName', 'username', 'email', 'password', 'cpassword', 'isTerms'];
 
@@ -184,6 +185,7 @@ class SignupComponent extends Component {
                             </Form.Group> */}
                             {/* <span style={{ color: "red" }}>{this.state.errors["isTerms"]}</span> */}
                             <Button type="submit" variant="primary" block>Signup</Button>
+                            <Button variant="info" block to="/login" as={Link} >Login</Button>
                         </Form>
                     </Col>
                 </Row>
