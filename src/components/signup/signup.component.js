@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button, InputGroup, Col, Row } from 'react-bootstrap';
 import './signup.css'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 const signupFormArr = ['firstName', 'lastName', 'username', 'email', 'password', 'cpassword', 'isTerms'];
 
@@ -9,6 +9,7 @@ class SignupComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoggedIn: localStorage.getItem('user') || false,
             fields: {
                 firstName: null,
                 lastName: null,
@@ -83,97 +84,98 @@ class SignupComponent extends Component {
         }
     };
     render() {
-
+        const { isLoggedIn } = this.state;
         return (
-            <div>
-                <Row >
-                    <Col md={{ offset: 2, span: 8 }} >
-                        <h2 className="login-header">Signup Page</h2>
-                        <Form noValidate onSubmit={this.handleSubmit}>
-                            <Form.Row>
-                                <Form.Group as={Col} md="4" controlId="validationCustom01">
-                                    <Form.Control
-                                        required
-                                        type="text"
-                                        placeholder="First name"
-                                        name="firstName"
-                                        value={this.state.firstName}
-                                        onChange={this.handleChange}
-                                    />
-                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                    <span style={{ color: "red" }}>{this.state.errors["firstName"]}</span>
-                                </Form.Group>
-                                <Form.Group as={Col} md="4" controlId="validationCustom02">
-                                    <Form.Control
-                                        required
-                                        type="text"
-                                        placeholder="Last name"
-                                        name="lastName"
-                                        value={this.state.lastName}
-                                        onChange={this.handleChange}
-                                    />
-                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                    <span style={{ color: "red" }}>{this.state.errors["lastName"]}</span>
-                                </Form.Group>
-                                <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-                                    <InputGroup>
-                                        <InputGroup.Prepend>
-                                            <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                                        </InputGroup.Prepend>
+            isLoggedIn ? <Redirect to="/" /> :
+                <div>
+                    <Row >
+                        <Col md={{ offset: 2, span: 8 }} >
+                            <h2 className="login-header">Signup Page</h2>
+                            <Form noValidate onSubmit={this.handleSubmit}>
+                                <Form.Row>
+                                    <Form.Group as={Col} md="4" controlId="validationCustom01">
                                         <Form.Control
-                                            type="text"
-                                            placeholder="Username"
-                                            aria-describedby="inputGroupPrepend"
                                             required
-                                            name="username"
-                                            value={this.state.username}
+                                            type="text"
+                                            placeholder="First name"
+                                            name="firstName"
+                                            value={this.state.firstName}
                                             onChange={this.handleChange}
                                         />
+                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                        <span style={{ color: "red" }}>{this.state.errors["firstName"]}</span>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="4" controlId="validationCustom02">
+                                        <Form.Control
+                                            required
+                                            type="text"
+                                            placeholder="Last name"
+                                            name="lastName"
+                                            value={this.state.lastName}
+                                            onChange={this.handleChange}
+                                        />
+                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                        <span style={{ color: "red" }}>{this.state.errors["lastName"]}</span>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+                                        <InputGroup>
+                                            <InputGroup.Prepend>
+                                                <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Username"
+                                                aria-describedby="inputGroupPrepend"
+                                                required
+                                                name="username"
+                                                value={this.state.username}
+                                                onChange={this.handleChange}
+                                            />
+                                            <Form.Control.Feedback type="invalid">
+                                                Please choose a username.</Form.Control.Feedback>
+                                        </InputGroup>
+                                        <span style={{ color: "red" }}>{this.state.errors["username"]}</span>
+                                    </Form.Group>
+                                </Form.Row>
+                                <Form.Row>
+                                    <Form.Group as={Col} md="6" controlId="validationCustom03">
+                                        <Form.Control
+                                            type="email"
+                                            placeholder="Email"
+                                            required
+                                            name="email"
+                                            value={this.state.email}
+                                            onChange={this.handleChange} />
                                         <Form.Control.Feedback type="invalid">
-                                            Please choose a username.</Form.Control.Feedback>
-                                    </InputGroup>
-                                    <span style={{ color: "red" }}>{this.state.errors["username"]}</span>
-                                </Form.Group>
-                            </Form.Row>
-                            <Form.Row>
-                                <Form.Group as={Col} md="6" controlId="validationCustom03">
-                                    <Form.Control
-                                        type="email"
-                                        placeholder="Email"
-                                        required
-                                        name="email"
-                                        value={this.state.email}
-                                        onChange={this.handleChange} />
-                                    <Form.Control.Feedback type="invalid">
-                                        Please provide a valid email.</Form.Control.Feedback>
-                                    <span style={{ color: "red" }}>{this.state.errors["email"]}</span>
-                                </Form.Group>
-                                <Form.Group as={Col} md="3" controlId="validationCustom04">
-                                    <Form.Control
-                                        type="password"
-                                        placeholder="Password"
-                                        required
-                                        name="password"
-                                        value={this.state.password}
-                                        onChange={this.handleChange} />
-                                    <Form.Control.Feedback type="invalid">
-                                        Please provide a valid Password.</Form.Control.Feedback>
-                                    <span style={{ color: "red" }}>{this.state.errors["password"]}</span>
-                                </Form.Group>
-                                <Form.Group as={Col} md="3" controlId="validationCustom05">
-                                    <Form.Control
-                                        type="password"
-                                        placeholder="Confirm Password"
-                                        required
-                                        name="cpassword"
-                                        value={this.state.cpassword}
-                                        onChange={this.handleChange} />
-                                    <Form.Control.Feedback type="invalid">
-                                        Please provide a valid confirm password.</Form.Control.Feedback>
-                                    <span style={{ color: "red" }}>{this.state.errors["cpassword"]}</span>
-                                </Form.Group>
-                            </Form.Row>
-                            {/* <Form.Group>
+                                            Please provide a valid email.</Form.Control.Feedback>
+                                        <span style={{ color: "red" }}>{this.state.errors["email"]}</span>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="3" controlId="validationCustom04">
+                                        <Form.Control
+                                            type="password"
+                                            placeholder="Password"
+                                            required
+                                            name="password"
+                                            value={this.state.password}
+                                            onChange={this.handleChange} />
+                                        <Form.Control.Feedback type="invalid">
+                                            Please provide a valid Password.</Form.Control.Feedback>
+                                        <span style={{ color: "red" }}>{this.state.errors["password"]}</span>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="3" controlId="validationCustom05">
+                                        <Form.Control
+                                            type="password"
+                                            placeholder="Confirm Password"
+                                            required
+                                            name="cpassword"
+                                            value={this.state.cpassword}
+                                            onChange={this.handleChange} />
+                                        <Form.Control.Feedback type="invalid">
+                                            Please provide a valid confirm password.</Form.Control.Feedback>
+                                        <span style={{ color: "red" }}>{this.state.errors["cpassword"]}</span>
+                                    </Form.Group>
+                                </Form.Row>
+                                {/* <Form.Group>
                                 <Form.Check
                                     className={className}
                                     label="Agree to terms and conditions"
@@ -183,13 +185,13 @@ class SignupComponent extends Component {
                                     onChange={this.handleChange}
                                 />
                             </Form.Group> */}
-                            {/* <span style={{ color: "red" }}>{this.state.errors["isTerms"]}</span> */}
-                            <Button type="submit" variant="primary" block>Signup</Button>
-                            <Button variant="info" block to="/login" as={Link} >Login</Button>
-                        </Form>
-                    </Col>
-                </Row>
-            </div>
+                                {/* <span style={{ color: "red" }}>{this.state.errors["isTerms"]}</span> */}
+                                <Button type="submit" variant="primary" block>Signup</Button>
+                                <Button variant="info" block to="/login" as={Link} >Login</Button>
+                            </Form>
+                        </Col>
+                    </Row>
+                </div>
         );
     }
 }

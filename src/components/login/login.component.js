@@ -7,7 +7,7 @@ import {
   ButtonToolbar,
 } from "react-bootstrap";
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 
 class LoginComponent extends Component {
@@ -15,7 +15,8 @@ class LoginComponent extends Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      isLoggedIn: localStorage.getItem('user') || false
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.onSubmitHandle = this.onSubmitHandle.bind(this);
@@ -36,7 +37,6 @@ class LoginComponent extends Component {
     event.preventDefault();
     const { email, password } = this.state;
     localStorage.setItem('user', JSON.stringify(this.state));
-    alert(JSON.stringify(this.state))
     this.props.history.push('/');
 
   }
@@ -46,38 +46,39 @@ class LoginComponent extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, isLoggedIn } = this.state;
     return (
-      < Row >
-        <Col md={{ offset: 3, span: 6 }}>
-          <h2 className="login-header">Login Page</h2>
-          <Form onSubmit={this.onSubmitHandle}>
-            <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Control
-                required
-                type="email"
-                placeholder="name@example.com"
-                name="email"
-                value={email}
-                onChange={this.handleInputChange} />
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                checked
-                type="password"
-                placeholder="password"
-                name="password"
-                value={password}
-                onChange={this.handleInputChange}
-              />
-            </Form.Group>
-            <ButtonToolbar>
-              <Button variant="primary" block className="login-button" type="submit" >Login</Button>
-              <Button variant="info" block to="/signup" as={Link} >Signup</Button>
-            </ButtonToolbar>
-          </Form>
-        </Col>
-      </Row >
+      isLoggedIn ? <Redirect to="/" /> :
+        < Row >
+          <Col md={{ offset: 3, span: 6 }}>
+            <h2 className="login-header">Login Page</h2>
+            <Form onSubmit={this.onSubmitHandle}>
+              <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Control
+                  required
+                  type="email"
+                  placeholder="name@example.com"
+                  name="email"
+                  value={email}
+                  onChange={this.handleInputChange} />
+              </Form.Group>
+              <Form.Group>
+                <Form.Control
+                  checked
+                  type="password"
+                  placeholder="password"
+                  name="password"
+                  value={password}
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+              <ButtonToolbar>
+                <Button variant="primary" block className="login-button" type="submit" >Login</Button>
+                <Button variant="info" block to="/signup" as={Link} >Signup</Button>
+              </ButtonToolbar>
+            </Form>
+          </Col>
+        </Row >
     );
   }
 }

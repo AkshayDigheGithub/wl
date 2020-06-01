@@ -3,6 +3,8 @@ import { Route, Redirect } from 'react-router-dom';
 import Skelton from './skelton';
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
+    console.log("***", localStorage.getItem('user'));
+
     return (
         <Route {...rest} render={props => (
             localStorage.getItem('user')

@@ -20,6 +20,7 @@ function SwitchR() {
         <Switch>
             <PrivateRoute exact path="/" component={Home} />
             <PrivateRoute path="/profile" component={ProfileComponent} />
+            <PrivateRoute path="/profile" component={ProfileComponent} />
             <Route path="/login" component={LoginComponent} />
             <Route path="/signup" component={Signupcomponent} />
         </Switch >
