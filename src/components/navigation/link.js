@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { SwitchR, Router } from './switch';
+import React, { Component } from 'react'
+import { SwitchR, Router } from './switch'
 
 class NavigationLink extends Component {
-    render() {
-        return (
-            <Router>
-                <SwitchR />
-            </Router>
-        )
-    }
+  render () {
+    return (
+      <Router>
+        <SwitchR />
+      </Router>
+    )
+  }
 }
 
-export default NavigationLink;
+export default NavigationLink

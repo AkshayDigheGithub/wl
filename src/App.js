@@ -1,16 +1,16 @@
-import React from "react";
-import { Container } from "react-bootstrap";
-import NavigationLink from './components/navigation/link';
-import "./App.css";
+import React from 'react'
+import { Container } from 'react-bootstrap'
+import NavigationLink from './components/navigation/link'
+import './App.css'
 
-function App() {
+function App () {
   return (
-    <div className="App">
+    <div className='App'>
       <Container>
         <NavigationLink />
       </Container>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

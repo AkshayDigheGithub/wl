@@ -1,5 +1,5 @@
 const ContractorReducer = (state = {}, { type, payload }) => {
-  return state;
-};
+  return state
+}
 
-export default ContractorReducer;
+export default ContractorReducer
